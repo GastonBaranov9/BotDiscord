@@ -3,8 +3,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Library;
+namespace Ucu.Poo.DiscordBot.Services;
 
+/// <summary>
+/// Esta clase ejecuta el bot de Discord hasta que en la terminal donde se
+/// ejecuta el bot se oprime la tecla 'Q'.
+/// </summary>
 public class BotLoader
 {
     public static async Task LoadAsync(string[] args)
@@ -37,7 +41,7 @@ public class BotLoader
 
                 if (keyInfo.Key == ConsoleKey.Q)
                 {
-                    Console.WriteLine("\nShutting down!");
+                    Console.WriteLine("\nFinalizado");
 
                     await bot.StopAsync();
                     return;

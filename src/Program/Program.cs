@@ -1,9 +1,15 @@
-﻿using Library;
+﻿using Ucu.Poo.DiscordBot.Services;
 
-namespace Program;
+namespace Ucu.Poo.DiscordBot.Program;
 
+/// <summary>
+/// Un programa que implementa un bot de Discord.
+/// </summary>
 class Program
 {
+    /// <summary>
+    /// Punto de entrada al programa.
+    /// </summary>
     private static void Main(string[] args)
     {
         BotLoader.LoadAsync(args).GetAwaiter().GetResult();
