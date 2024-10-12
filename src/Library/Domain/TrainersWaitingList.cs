@@ -11,6 +11,22 @@ public class TrainersWaitingList
     
     private List<Trainer> trainers = new List<Trainer>();
 
+    public int UsersWaitingCount
+    {
+        get { return this.trainers.Count; }
+    }
+
+    public List<string> GetAllUsernames()
+    {
+        List<string> users = new List<string>();
+        foreach (Trainer trainer in trainers)
+        {
+            users.Add(trainer.DiscordUsername);
+        }
+
+        return users;
+    }
+
     /// <summary>
     /// Obtiene la única instancia de la clase <see cref="TrainersWaitingList"/>.
     /// </summary>
