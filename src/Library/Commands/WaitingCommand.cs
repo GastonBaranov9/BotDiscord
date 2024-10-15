@@ -7,6 +7,7 @@ namespace Ucu.Poo.DiscordBot.Commands;
 /// Esta clase implementa el comando 'waitinglist' del bot. Este comando muestra
 /// la lista de jugadores esperando para jugar.
 /// </summary>
+// ReSharper disable once UnusedType.Global
 public class WaitingCommand : ModuleBase<SocketCommandContext>
 {
     /// <summary>
@@ -16,17 +17,11 @@ public class WaitingCommand : ModuleBase<SocketCommandContext>
     [Command("waitinglist")]
     [Summary("Muestra los usuarios en la lista de espera")]
     [Alias("waiting", "whoiswaiting")]
-    public async Task UserInfoAsync()
+    // ReSharper disable once UnusedMember.Global
+    public async Task ExecuteAsync()
     {
-        string usersWaiting =
-            string.Join(",", TrainersWaitingList.Instance.GetAllUsernames());
-        if (string.IsNullOrEmpty(usersWaiting))
-        {
-            await ReplyAsync("No hay nadie esperando");
-        }
-        else
-        {
-            await ReplyAsync($"Esperan: {usersWaiting}");
-        }
+        string result = Facade.Instance.GetAllTrainersWaiting();
+        
+        await ReplyAsync(result);
     }
 }

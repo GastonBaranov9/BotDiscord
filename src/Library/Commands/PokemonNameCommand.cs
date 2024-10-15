@@ -10,6 +10,7 @@ namespace Ucu.Poo.DiscordBot.Commands;
 /// Esta clase implementa el comando 'name' del bot. Este comando retorna el
 /// nombre de un Pokémon dado su identificador.
 /// </summary>
+// ReSharper disable once UnusedType.Global
 public class PokemonNameCommand : ModuleBase<SocketCommandContext>
 {
     private readonly ILogger<PokemonNameCommand> logger;
@@ -37,6 +38,7 @@ public class PokemonNameCommand : ModuleBase<SocketCommandContext>
     /// <param name="id">El identificador del Pokémon a buscar.</param>
     [Command("name")]
     [Summary("Busca el nombre de un Pokémon por identificador usando la PokéAPI")]
+    // ReSharper disable once UnusedMember.Global
     public async Task ExecuteAsync([Remainder][Summary("ID")] int id = 0)
     {
         if (id <= 0)
@@ -75,13 +77,13 @@ public class PokemonNameCommand : ModuleBase<SocketCommandContext>
             }
             else
             {
-                logger.LogError(exception.Message);
+                logger.LogError("HTTP error: {Message}", exception.Message);
             }
            
         }
         catch (Exception exception)
         {
-            logger.LogError(exception.Message);    
+            logger.LogError("Exception: {Message}", exception.Message);    
         }
     }
 }

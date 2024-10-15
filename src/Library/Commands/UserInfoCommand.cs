@@ -9,26 +9,38 @@ namespace Ucu.Poo.DiscordBot.Commands;
 /// Este comando retorna información sobre el usuario que envía el mensaje o sobre
 /// otro usuario si se incluye como parámetro..
 /// </summary>
+// ReSharper disable once UnusedType.Global
 public class UserInfoCommand : ModuleBase<SocketCommandContext>
 {
     /// <summary>
     /// Implementa el comando 'userinfo', alias 'who' o 'whois' del bot.
     /// </summary>
-    /// <param name="user">El nombre de usuario de Discord a buscar.</param>
-    [Command("userinfo")]
-    [Summary(@"""Devuelve información sobre el usuario que envía el mensaje o
-        sobre otro usuario si se provee.""")]
-    [Alias("who", "whois")]
-    public async Task UserInfoAsync(
-        [Summary("El usuario (opcional) del que tener información.")]
-        SocketUser? user = null)
+    /// <param name="displayName">El nombre de usuario de Discord a buscar.</param>
+    [Command("who")]
+    [Summary(
+        """
+        Devuelve información sobre el usuario que se indica como parámetro o
+        sobre el usuario que envía el mensaje si no se indica otro usuario.
+        """)]
+    // ReSharper disable once UnusedMember.Global
+    public async Task ExecuteAsync(
+        [Remainder][Summary("El usuario del que tener información, opcional")]
+        string? displayName = null)
     {
-        var userInfo = user ?? Context.Message.Author;
+        if (displayName != null)
+        {
+            SocketGuildUser? user = CommandHelper.GetUser(Context, displayName);
+
+            if (user == null)
+            {
+                await ReplyAsync($"No puedo encontrar {displayName} en este servidor");
+            }
+        }
         
-        Trainer? trainer = TrainersWaitingList.Instance
-            .FindTrainerByDiscordUsername(userInfo.Username);
-        string isTrainer = trainer == null ? "no está esperando" : "esperando";
+        string userName = displayName ?? CommandHelper.GetDisplayName(Context);
         
-        await ReplyAsync($"{userInfo.Username}#{userInfo.Discriminator}; {isTrainer}");
+        string result = Facade.Instance.TrainerIsWaiting(userName);
+        
+        await ReplyAsync(result);
     }
 }

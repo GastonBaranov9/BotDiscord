@@ -26,7 +26,11 @@ public class Bot : IBot
 
         DiscordSocketConfig config = new()
         {
-            GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.MessageContent
+            AlwaysDownloadUsers = true,
+            GatewayIntents = 
+                GatewayIntents.AllUnprivileged
+                | GatewayIntents.MessageContent/*
+                | GatewayIntents.GuildMembers*/
         };
 
         client = new DiscordSocketClient(config);
@@ -37,7 +41,7 @@ public class Bot : IBot
     {
         string discordToken = configuration["DiscordToken"] ?? throw new Exception("Falta el token");
 
-        logger.LogInformation($"Iniciando el con token {discordToken}");
+        logger.LogInformation("Iniciando el con token {Token}", discordToken);
         
         serviceProvider = services;
 
@@ -52,12 +56,8 @@ public class Bot : IBot
     public async Task StopAsync()
     {
         logger.LogInformation("Finalizando");
-        
-        if (client != null)
-        {
-            await client.LogoutAsync();
-            await client.StopAsync();
-        }
+        await client.LogoutAsync();
+        await client.StopAsync();
     }
 
     private async Task HandleCommandAsync(SocketMessage arg)

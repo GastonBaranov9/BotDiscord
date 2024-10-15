@@ -9,9 +9,9 @@ namespace Ucu.Poo.DiscordBot.Services;
 /// Esta clase ejecuta el bot de Discord hasta que en la terminal donde se
 /// ejecuta el bot se oprime la tecla 'Q'.
 /// </summary>
-public class BotLoader
+public static class BotLoader
 {
-    public static async Task LoadAsync(string[] args)
+    public static async Task LoadAsync()
     {
         var configuration = new ConfigurationBuilder()
             .AddUserSecrets(Assembly.GetExecutingAssembly())
@@ -39,13 +39,12 @@ public class BotLoader
             {
                 var keyInfo = Console.ReadKey();
 
-                if (keyInfo.Key == ConsoleKey.Q)
-                {
-                    Console.WriteLine("\nFinalizado");
-
-                    await bot.StopAsync();
-                    return;
-                }
+                if (keyInfo.Key != ConsoleKey.Q) continue;
+                
+                Console.WriteLine("\nFinalizado");
+                await bot.StopAsync();
+                
+                return;
             } while (true);
         }
         catch (Exception exception)

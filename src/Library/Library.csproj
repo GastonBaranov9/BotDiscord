@@ -5,6 +5,7 @@
     <UserSecretsId>PII_DiscordBot_Demo</UserSecretsId>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>Ucu.Poo.DiscordBot</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>

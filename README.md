@@ -22,7 +22,7 @@ Para probar el bot:
    siempre existe en Linux/macOS-:
 
    - **Windows**: `%APPDATA%\\Microsoft\\UserSecrets\\PII_TelegramBot_Demo\\secrets.json`
-   - **Linux/macOs**: `~/.microsoft/usersecrets/PII_TelegramBot_Demo/secrets.json`
+   - **Linux/macOs**: `~/.microsoft/usersecrets/PII_TelegramBot_Demo/secrets.json
 
 4. Edita el archivo `secrets.json` para que contenga la configuración que 
    aparece a continuación, donde reemplazas `<token>` por el que te dio el 

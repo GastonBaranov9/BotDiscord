@@ -6,17 +6,17 @@ namespace Ucu.Poo.DiscordBot.Domain;
 public class Trainer
 {
     /// <summary>
-    /// El nombre de usuario de Discord del jugador.
+    /// El nombre de usuario de Discord en el servidor del bot del jugador.
     /// </summary>
-    public string DiscordUsername { get; }
+    public string DisplayName { get; }
 
     /// <summary>
     /// Inicializa una nueva instancia de la clase <see cref="Trainer"/> con el
     /// nombre de usuario de Discord que se recibe como argumento.
     /// </summary>
-    /// <param name="username">El nombre de usuario de Discord.</param>
-    public Trainer(string username)
+    /// <param name="displayName">El nombre de usuario de Discord.</param>
+    public Trainer(string displayName)
     {
-        this.DiscordUsername = username;
+        this.DisplayName = displayName;
     }
 }
