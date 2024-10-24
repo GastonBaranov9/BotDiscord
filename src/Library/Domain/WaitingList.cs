@@ -29,6 +29,11 @@ public class WaitingList
     /// contrario.</returns>
     public bool AddTrainer(string displayName)
     {
+        if (string.IsNullOrEmpty(displayName))
+        {
+            throw new ArgumentException(nameof(displayName));
+        }
+        
         if (this.FindTrainerByDisplayName(displayName) != null) return false;
         trainers.Add(new Trainer(displayName));
         return true;

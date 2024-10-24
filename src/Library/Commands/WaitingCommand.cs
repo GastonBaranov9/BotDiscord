@@ -16,12 +16,11 @@ public class WaitingCommand : ModuleBase<SocketCommandContext>
     /// </summary>
     [Command("waitinglist")]
     [Summary("Muestra los usuarios en la lista de espera")]
-    [Alias("waiting", "whoiswaiting")]
     // ReSharper disable once UnusedMember.Global
     public async Task ExecuteAsync()
     {
         string result = Facade.Instance.GetAllTrainersWaiting();
-        
+
         await ReplyAsync(result);
     }
 }
