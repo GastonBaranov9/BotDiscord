@@ -63,15 +63,17 @@ Para probar el bot:
 
 2. Crea un nuevo bot en Discord siguiendo [estas
    instrucciones](https://docs.discordnet.dev/guides/getting_started/first-bot.html);
-   anota el token que te muestra la página.
+   anota el token que te muestra la página. Cuando sigas el procedimiento y
+   tengas las opciones `Install to user account` o `Install to server`, elije
+   `Install to server`; vas a tener que crear un server para probar tu bot.
 
 3. Crea un archivo `secrets.json` en las siguientes ubicaciones dependiendo de
    tu sistema operativo; si no existe alguna de las carpetas en la ruta
    deberás crearla;`%APPDATA%` en Windows siempre existe, así como `~`
    siempre existe en Linux/macOS-:
 
-   - **Windows**: `%APPDATA%\\Microsoft\\UserSecrets\\PII_TelegramBot_Demo\\secrets.json`
-   - **Linux/macOs**: `~/.microsoft/usersecrets/PII_TelegramBot_Demo/secrets.json
+   - **Windows**: `%APPDATA%\\Microsoft\\UserSecrets\\PII_DiscordBot_Demo\\secrets.json`
+   - **Linux/macOs**: `~/.microsoft/usersecrets/PII_DiscordBot_Demo/secrets.json
 
 4. Edita el archivo `secrets.json` para que contenga la configuración que
    aparece a continuación, donde reemplazas `<token>` por el que te dio el
