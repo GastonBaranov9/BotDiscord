@@ -13,8 +13,8 @@ internal static class Program
     /// </summary>
     private static void Main()
     {
-        DemoFacade();
-        // DemoBot();
+        //DemoFacade();
+        DemoBot();
     }
 
     private static void DemoFacade()
